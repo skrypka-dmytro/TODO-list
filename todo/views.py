@@ -1,5 +1,4 @@
 from django.http import HttpResponseRedirect
-from django.shortcuts import render
 from django.urls import reverse_lazy
 from django.views import generic
 
@@ -26,30 +25,29 @@ class TagUpdateView(generic.UpdateView):
 class TagDeleteView(generic.DeleteView):
     model = Tag
     success_url = reverse_lazy("todo:tag-list")
-    template_name = "todo/tag_confirm_delete.html"
 
 
 class TaskListView(generic.ListView):
     model = Task
-    paginate_by = 5
+    paginate_by = 3
 
 
 class TaskCreateView(generic.CreateView):
     model = Task
     fields = "__all__"
-    success_url = reverse_lazy("togo:task-list")
+    success_url = reverse_lazy("todo:task-list")
 
 
 class TaskUpdateView(generic.UpdateView):
     model = Task
     fields = "__all__"
-    success_url = reverse_lazy("togo:task-list")
-
-
-class TaskDeleteView(generic.UpdateView):
-    model = Tag
     success_url = reverse_lazy("todo:task-list")
+
+
+class TaskDeleteView(generic.DeleteView):
+    model = Task
     template_name = "todo/task_confirm_delete.html"
+    success_url = reverse_lazy("todo:task-list")
 
 
 def task_status(request, pk: int, status) -> HttpResponseRedirect:
@@ -59,5 +57,5 @@ def task_status(request, pk: int, status) -> HttpResponseRedirect:
     elif status == "not_done":
         task.work_status = False
     task.save()
-    return HttpResponseRedirect(reverse_lazy("todo:task-list", args=[pk]))
+    return HttpResponseRedirect(reverse_lazy("todo:task-list"))
 
