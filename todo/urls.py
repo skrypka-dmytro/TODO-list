@@ -25,7 +25,7 @@ urlpatterns = [
         name="task-delete"
     ),
     path(
-        "tasks/<int:pk>/<status>/status/",
+        "tasks/<int:pk>/status/",
         task_status,
         name="task-status"
     ),
