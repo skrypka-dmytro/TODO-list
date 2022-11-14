@@ -20,3 +20,10 @@ class TagUpdateView(LoginRequiredMixin, generic.UpdateView):
     model = Tag
     fields = "__all__"
     success_url = reverse_lazy("todo:tag-list")
+
+
+class TagDeleteView(LoginRequiredMixin, generic.DeleteView):
+    model = Tag
+    success_url = reverse_lazy("togo:tag-list")
+    template_name = "todo/tag_confirm_delete.html"
+
