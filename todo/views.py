@@ -8,6 +8,7 @@ from todo.models import Tag
 
 class TagListView(LoginRequiredMixin, generic.ListView):
     model = Tag
+    paginate_by = 5
 
 
 class TagCreateView(LoginRequiredMixin, generic.CreateView):
