@@ -10,22 +10,22 @@ urlpatterns = [
         name="task-list"
     ),
     path(
-        "tasls/create/",
+        "tasks/create/",
         TaskCreateView.as_view(),
         name="task-create"
     ),
     path(
-        "tasls/<int:pk>/update/",
+        "tasks/<int:pk>/update/",
         TaskUpdateView.as_view(),
         name="task-update"
     ),
     path(
-        "tasls/<int:pk>/delete/",
+        "tasks/<int:pk>/delete/",
         TaskDeleteView.as_view(),
         name="task-delete"
     ),
     path(
-        "tasls/<int:pk>/<status>/delete/",
+        "tasks/<int:pk>/<status>/status/",
         task_status,
         name="task-status"
     ),
